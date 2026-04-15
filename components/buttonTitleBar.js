@@ -24,6 +24,7 @@ const ButtonTitleBar = ({
     onPress = () => alert("Botao Clicado")
 }) => (
 
+    
     <View style={[styles.buttonView, { borderRadius: buttonSize * 0.2, width: buttonSize * 0.7, width: buttonSize * 0.7 }]}>
         <Pressable
             onPress={onPress}
