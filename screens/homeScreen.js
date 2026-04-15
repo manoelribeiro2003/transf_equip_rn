@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
+import { View, FlatList, StyleSheet, Text, StatusBar, Image } from 'react-native';
 import ButtonHomeScreen from '../components/buttonHomeScreen';
-import { SvgAtualizarLocalizacao, SvgCadastroDeEquipamento, SvgConfiguracoes, SvgEmManutencao, SvgEncerrarChamado, SvgEnviosERecebimentos, SvgEquipamentosConsertados, SvgEquipamentosEmEstoque, SvgGestaoDeSetup, SvgHistoricoDeSetups, SvgHistoricoDeTransferencias, SvgHistoricoMovimentacoes, SvgRastrearEquipamento, SvgSolicitacoesDeSetup, SvgSolicitacoesEquipamentos, SvgSolicitarEquipamento } from '../images/dist'; '../images/dist/index';
+import { SvgAtualizarLocalizacao, SvgCadastroDeEquipamento, SvgConfiguracoes, SvgEmManutencao, SvgEncerrarChamado, SvgEnviosERecebimentos, SvgEquipamentosConsertados, SvgEquipamentosEmEstoque, SvgGestaoDeSetup, SvgHistoricoDeSetups, SvgHistoricoDeTransferencias, SvgHistoricoMovimentacoes, SvgRastrearEquipamento, SvgSolicitacoesDeSetup, SvgSolicitacoesEquipamentos, SvgSolicitarEquipamento } from '../images/dist';import ButtonTitleBar from '../components/buttonTitleBar';
+ '../images/dist/index';
 
 const botoes = [
   { key: 1, textButton: "Solicitar Equipamento", SvgElement: SvgSolicitarEquipamento },
@@ -26,7 +27,15 @@ const HomeScreen = () => (
   <View style={styles.containerScreen}>
 
     <View style={styles.headerContainer}>
-      <Text style={{ color: '#fff' }}>Oi</Text>
+      <View style={styles.containerImgPerfil}>
+        <Image
+          source={require('../assets/HomeScreen/ImagemDePerfil.png')}
+          style={{height:'100%', aspectRatio: 1}}
+        />
+      </View>
+
+      <Text style={{ color: '#fff', fontSize: 18, borderWidth: 1}}>Manoel Ribeiro</Text>
+      <ButtonTitleBar></ButtonTitleBar>
     </View>
     <View style={styles.mainContainer}>
 
@@ -34,8 +43,8 @@ const HomeScreen = () => (
         data={botoes}
         renderItem={({ item }) => <ButtonHomeScreen SvgElement={item.SvgElement} textButton={item.textButton} />}
         numColumns={3}
-        columnWrapperStyle={{ justifyContent: 'space-around'}}
-        contentContainerStyle={{paddingBottom: 50, overflow: 'hidden', borderWidth: 0}}
+        columnWrapperStyle={{ justifyContent: 'space-around' }}
+        contentContainerStyle={{ paddingBottom: 50, overflow: 'hidden', borderWidth: 0 }}
         showsVerticalScrollIndicator={false}
       />
 
@@ -57,7 +66,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 22,
     borderTopRightRadius: 22,
     paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingTop: 30,
     overflow: 'hidden',
     justifyContent: 'center',
     alignItems: 'stretch',
@@ -65,11 +74,19 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     height: 100,
-    marginTop: StatusBar.currentHeight || 0
+    marginTop: StatusBar.currentHeight || 0,
+    borderWidth: 1,
+    padding: 20,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row'
   },
-  flalist: {
-    overflow: 'hidden',
-  },
+  containerImgPerfil: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 100,
+    marginRight: 20
+  }
 });
 
 export default HomeScreen;

@@ -18,34 +18,28 @@ function SvgPlaceHolder(props) {
     )
 }
 
-const ButtonHomeScreen = ({
+const ButtonTitleBar = ({
     SvgElement = SvgPlaceHolder,
-    buttonSize = 110,
-    textButton = "Inserir Texto",
-    onPress = () => alert(textButton)
+    buttonSize = 80,
+    onPress = () => alert("Botao Clicado")
 }) => (
 
-    <View style={[styles.buttonContainer, { width: buttonSize, height: buttonSize + buttonSize * 0.07 }]}>
-
-        <View style={[styles.buttonView, { borderRadius: buttonSize * 0.2, width: buttonSize * 0.7, width: buttonSize * 0.7 }]}>
-            <Pressable
-                onPress={onPress}
-                style={({ pressed }) => [
-                    styles.pressable,
-                    {
-                        transform: [{ scale: pressed ? 0.95 : 1 }],
-                        opacity: pressed ? 0.85 : 1,
-                    },
-                ]}
-            >
-                <SvgElement
-                    height={buttonSize * 0.4}
-                    width={buttonSize * 0.4}
-                />
-            </Pressable>
-        </View>
-        <Text style={[styles.textButton, { fontSize: buttonSize * 0.125 }]}>{textButton}</Text>
-
+    <View style={[styles.buttonView, { borderRadius: buttonSize * 0.2, width: buttonSize * 0.7, width: buttonSize * 0.7 }]}>
+        <Pressable
+            onPress={onPress}
+            style={({ pressed }) => [
+                styles.pressable,
+                {
+                    transform: [{ scale: pressed ? 0.95 : 1 }],
+                    opacity: pressed ? 0.85 : 1,
+                },
+            ]}
+        >
+            <SvgElement
+                height={buttonSize * 0.7}
+                width={buttonSize * 0.7}
+            />
+        </Pressable>
     </View>
 );
 
@@ -64,14 +58,6 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         elevation: 4,
     },
-    textButton: {
-        color: '#000',
-        textAlign: 'center',
-        flex: 1,
-        // borderWidth: 1,
-        // borderColor: 'black',
-        textAlignVertical: 'center',
-    },
     pressable: {
         width: '100%',
         aspectRatio: 1,
@@ -80,4 +66,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default ButtonHomeScreen;
+export default ButtonTitleBar;
