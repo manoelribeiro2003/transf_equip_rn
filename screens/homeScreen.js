@@ -1,8 +1,28 @@
 import React from 'react';
 import { View, FlatList, StyleSheet, Text, StatusBar, Image } from 'react-native';
 import ButtonHomeScreen from '../components/buttonHomeScreen';
-import { SvgAtualizarLocalizacao, SvgCadastroDeEquipamento, SvgConfiguracoes, SvgEmManutencao, SvgEncerrarChamado, SvgEnviosERecebimentos, SvgEquipamentosConsertados, SvgEquipamentosEmEstoque, SvgGestaoDeSetup, SvgHistoricoDeSetups, SvgHistoricoDeTransferencias, SvgHistoricoMovimentacoes, SvgRastrearEquipamento, SvgSolicitacoesDeSetup, SvgSolicitacoesEquipamentos, SvgSolicitarEquipamento } from '../images/dist';import ButtonTitleBar from '../components/buttonTitleBar';
- '../images/dist/index';
+import ButtonTitleBar from '../components/buttonTitleBar';
+import {
+  SvgAtualizarLocalizacao,
+  SvgCadastroDeEquipamento,
+  SvgConfiguracoes,
+  SvgEmManutencao,
+  SvgEncerrarChamado,
+  SvgEnviosERecebimentos,
+  SvgEquipamentosConsertados,
+  SvgEquipamentosEmEstoque,
+  SvgGestaoDeSetup,
+  SvgHistoricoDeSetups,
+  SvgHistoricoDeTransferencias,
+  SvgHistoricoMovimentacoes,
+  SvgRastrearEquipamento,
+  SvgRefresh,
+  SvgSair,
+  SvgSolicitacoesDeSetup,
+  SvgSolicitacoesEquipamentos,
+  SvgSolicitarEquipamento
+} from '../assets/svgComponents/index';
+import PRIMARY_COLOR from '../globalConfigs';
 
 const botoes = [
   { key: 1, textButton: "Solicitar Equipamento", SvgElement: SvgSolicitarEquipamento },
@@ -27,15 +47,27 @@ const HomeScreen = () => (
   <View style={styles.containerScreen}>
 
     <View style={styles.headerContainer}>
+
       <View style={styles.containerImgPerfil}>
         <Image
           source={require('../assets/HomeScreen/ImagemDePerfil.png')}
-          style={{height:'100%', aspectRatio: 1}}
+          style={{ height: '100%', aspectRatio: 1 }}
         />
       </View>
 
-      <Text style={{ color: '#fff', fontSize: 18, borderWidth: 1}}>Manoel Ribeiro</Text>
-      <ButtonTitleBar></ButtonTitleBar>
+      <View style={styles.containerNomeUsuario}>
+        <Text style={{ color: '#fff', fontSize: 18}}>Manoel Ribeiro</Text>
+      </View>
+
+      <View style={styles.containerBotoesHeader}>
+        <ButtonTitleBar
+          SvgElement={SvgRefresh}
+        />
+        <ButtonTitleBar
+          SvgElement={SvgSair}
+        />
+      </View>
+
     </View>
     <View style={styles.mainContainer}>
 
@@ -56,7 +88,7 @@ const HomeScreen = () => (
 const styles = StyleSheet.create({
   containerScreen: {
     flex: 1,
-    backgroundColor: '#7D2B70',
+    backgroundColor: PRIMARY_COLOR,
     justifyContent: 'center',
     alignItems: 'stretch',
   },
@@ -75,7 +107,6 @@ const styles = StyleSheet.create({
   headerContainer: {
     height: 100,
     marginTop: StatusBar.currentHeight || 0,
-    borderWidth: 1,
     padding: 20,
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -85,7 +116,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
-    marginRight: 20
+    marginRight: 10
+  },
+  containerBotoesHeader:{
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingHorizontal: 10,
+    gap: 20
   }
 });
 

@@ -1,6 +1,7 @@
 import Svg, { Path } from "react-native-svg"
 import React from 'react';
 import { View, StyleSheet, Text, Pressable } from 'react-native';
+import PRIMARY_COLOR from "../globalConfigs";
 
 function SvgPlaceHolder(props) {
     return (
@@ -59,7 +60,7 @@ const styles = StyleSheet.create({
     buttonView: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#7D2B70',
+        backgroundColor: PRIMARY_COLOR,
         aspectRatio: 1,
         overflow: 'hidden',
         elevation: 4,

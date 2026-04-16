@@ -1,6 +1,7 @@
 import Svg, { Path } from "react-native-svg"
 import React from 'react';
-import { View, StyleSheet, Text, Pressable } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
+import PRIMARY_COLOR from "../globalConfigs";
 
 function SvgPlaceHolder(props) {
     return (
@@ -18,14 +19,36 @@ function SvgPlaceHolder(props) {
     )
 }
 
+function lightenHex(hex, percent) {
+    // percent: 0 a 1 (ex: 0.2 = 20% mais claro)
+    const num = parseInt(hex.replace('#', ''), 16);
+
+    let r = (num >> 16) & 0xff;
+    let g = (num >> 8) & 0xff;
+    let b = num & 0xff;
+
+    r = Math.round(r + (255 - r) * percent);
+    g = Math.round(g + (255 - g) * percent);
+    b = Math.round(b + (255 - b) * percent);
+
+    return (
+        '#' +
+        ((1 << 24) + (r << 16) + (g << 8) + b)
+            .toString(16)
+            .slice(1)
+    );
+}
+
 const ButtonTitleBar = ({
     SvgElement = SvgPlaceHolder,
-    buttonSize = 80,
-    onPress = () => alert("Botao Clicado")
+    buttonSize = 60,
+    onPress = () => alert("Botao Clicado"),
+    defaultBackgroudColor = PRIMARY_COLOR,
+    defaultlightenHex = 0.1
 }) => (
 
-    
-    <View style={[styles.buttonView, { borderRadius: buttonSize * 0.2, width: buttonSize * 0.7, width: buttonSize * 0.7 }]}>
+
+    <View style={[styles.buttonView, { borderRadius: buttonSize * 0.2, width: buttonSize * 0.7, width: buttonSize * 0.7, backgroundColor: lightenHex(defaultBackgroudColor, defaultlightenHex) }]}>
         <Pressable
             onPress={onPress}
             style={({ pressed }) => [
@@ -37,8 +60,8 @@ const ButtonTitleBar = ({
             ]}
         >
             <SvgElement
-                height={buttonSize * 0.7}
-                width={buttonSize * 0.7}
+                height={buttonSize * 0.5}
+                style={{ aspectRatio: 1 }}
             />
         </Pressable>
     </View>
@@ -46,8 +69,6 @@ const ButtonTitleBar = ({
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        // borderWidth: 1,
-        // borderColor: 'black',
         justifyContent: 'flex-start',
         alignItems: 'center'
     },
@@ -56,8 +77,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#7D2B70',
         aspectRatio: 1,
-        overflow: 'hidden',
-        elevation: 4,
     },
     pressable: {
         width: '100%',
