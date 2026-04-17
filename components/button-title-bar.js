@@ -1,7 +1,6 @@
 import Svg, { Path } from "react-native-svg"
-import React from 'react';
 import { View, StyleSheet, Pressable } from 'react-native';
-import PRIMARY_COLOR from "../globalConfigs";
+import PRIMARY_COLOR from "../config/theme";
 
 function SvgPlaceHolder(props) {
     return (
@@ -20,7 +19,6 @@ function SvgPlaceHolder(props) {
 }
 
 function lightenHex(hex, percent) {
-    // percent: 0 a 1 (ex: 0.2 = 20% mais claro)
     const num = parseInt(hex.replace('#', ''), 16);
 
     let r = (num >> 16) & 0xff;
@@ -44,11 +42,18 @@ const ButtonTitleBar = ({
     buttonSize = 60,
     onPress = () => alert("Botao Clicado"),
     defaultBackgroudColor = PRIMARY_COLOR,
-    defaultlightenHex = 0.1
+    defaultlightenHex = 0.15
 }) => (
 
 
-    <View style={[styles.buttonView, { borderRadius: buttonSize * 0.2, width: buttonSize * 0.7, width: buttonSize * 0.7, backgroundColor: lightenHex(defaultBackgroudColor, defaultlightenHex) }]}>
+    <View style={[
+        styles.buttonView,
+        { 
+            borderRadius: buttonSize * 0.25, 
+            width: buttonSize * 0.7, 
+            backgroundColor: lightenHex(defaultBackgroudColor, defaultlightenHex)
+        }
+    ]}>
         <Pressable
             onPress={onPress}
             style={({ pressed }) => [
@@ -60,7 +65,7 @@ const ButtonTitleBar = ({
             ]}
         >
             <SvgElement
-                height={buttonSize * 0.5}
+                height={buttonSize * 0.4}
                 style={{ aspectRatio: 1 }}
             />
         </Pressable>
@@ -68,14 +73,10 @@ const ButtonTitleBar = ({
 );
 
 const styles = StyleSheet.create({
-    buttonContainer: {
-        justifyContent: 'flex-start',
-        alignItems: 'center'
-    },
     buttonView: {
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#7D2B70',
+        backgroundColor: PRIMARY_COLOR,
         aspectRatio: 1,
     },
     pressable: {

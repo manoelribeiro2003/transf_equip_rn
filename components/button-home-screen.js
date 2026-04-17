@@ -1,7 +1,6 @@
 import Svg, { Path } from "react-native-svg"
-import React from 'react';
 import { View, StyleSheet, Text, Pressable } from 'react-native';
-import PRIMARY_COLOR from "../globalConfigs";
+import PRIMARY_COLOR from "../config/theme";
 
 function SvgPlaceHolder(props) {
     return (
